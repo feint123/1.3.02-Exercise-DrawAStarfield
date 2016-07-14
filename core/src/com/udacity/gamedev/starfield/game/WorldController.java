@@ -75,7 +75,12 @@ public class WorldController {
         if(Gdx.app.getType() != Application.ApplicationType.Android) return;
 
         float spriteMoveSpeed=5*deltaTime;
-        if(Gdx.input.isTouched()) moveSelectedSprite(0,spriteMoveSpeed);
+        if(Gdx.input.isTouched()){
+            moveSelectedSprite(0,spriteMoveSpeed);
+            if(cameraHelper.hasTarget()){
+                cameraHelper.setTarget(testSprites[selectedSprite]);
+            }
+        }
     }
     private void moveSelectedSprite(float x,float y){
         testSprites[selectedSprite].translate(x,y);
